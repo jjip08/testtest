@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강민재 휴대폰 - 통화 기록</title>
+    <!-- Tailwind CSS (디자인을 위한 스타일 프레임워크) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 구글 웹 폰트 (Noto Sans KR) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 기본 폰트 설정 및 배경색 */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #050505; /* 아주 어두운 검은색 배경 */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 텍스트 서서히 나타나는 애니메이션 효과 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInAnim 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeInAnim {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 애니메이션 지연 시간 (순서대로 나타나게 함) */
+        .delay-1 { animation-delay: 0.5s; }
+        .delay-2 { animation-delay: 2.0s; }
+        .delay-3 { animation-delay: 3.5s; }
+        .delay-4 { animation-delay: 5.0s; }
+
+        /* 커스텀 스크롤바 (눈에 띄지 않게 처리) */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="text-white selection:bg-red-900 selection:text-white">
+
+    <!-- 스마트폰 기기 형태 컨테이너 -->
+    <div class="relative w-full max-w-[380px] h-[100dvh] sm:h-[800px] sm:rounded-[3rem] bg-[#0f0f11] shadow-[0_0_50px_rgba(255,255,255,0.03)] sm:border-[8px] sm:border-[#1a1a1c] overflow-hidden flex flex-col">
+        
+        <!-- 상단 상태바 (시간, 아이콘) -->
+        <div class="flex justify-between items-center px-6 pt-4 pb-2 text-[13px] text-gray-400 font-medium z-10">
+            <span>11:59</span>
+            <div class="flex items-center space-x-2">
+                <!-- 안테나 아이콘 -->
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21L15.6 16.2C14.6 15.4 13.4 15 12 15C10.6 15 9.4 15.4 8.4 16.2L12 21ZM12 3C7.95 3 4.21 4.5 1.2 6.8L3.6 10C6 8.3 8.9 7.3 12 7.3C15.1 7.3 18 8.3 20.4 10L22.8 6.8C19.79 4.5 16.05 3 12 3Z"/></svg>
+                <!-- 배터리 아이콘 -->
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17 4H16V2H8V4H7C5.9 4 5 4.9 5 6V20C5 21.1 5.9 22 7 22H17C18.1 22 19 21.1 19 20V6C19 4.9 18.1 4 17 4ZM17 20H7V6H17V20Z"/></svg>
+            </div>
+        </div>
+
+        <!-- 헤더 / 타이틀 영역 -->
+        <div class="text-center mt-6 z-10">
+            <h1 class="text-2xl sm:text-3xl font-bold tracking-widest text-gray-100 drop-shadow-md">강민재 휴대폰</h1>
+            <!-- 녹음 중 표시 (깜빡임 효과) -->
+            <div class="flex items-center justify-center space-x-2 mt-3 text-red-500 font-mono text-sm animate-pulse">
+                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                <span>REC 00:01:24</span>
+            </div>
+        </div>
+
+        <!-- 대화 (스크립트) 영역 -->
+        <div class="flex-1 overflow-y-auto no-scrollbar p-6 mt-4 flex flex-col space-y-8 z-10">
+            
+            <!-- 경찰선데요 (상대방) -->
+            <div class="self-start max-w-[85%] fade-in delay-1">
+                <p class="text-gray-400 text-sm mb-1 ml-1 font-medium tracking-wide">발신자 표시 제한</p>
+                <div class="bg-[#1f1f23] text-gray-200 px-5 py-4 rounded-2xl rounded-tl-sm shadow-md border border-gray-800">
+                    <p class="text-[17px] leading-relaxed break-keep">"—차주한 변호사님 되십니까?"</p>
+                </div>
+            </div>
+
+            <!-- 차주한 (나) -->
+            <div class="self-end max-w-[85%] fade-in delay-2">
+                <p class="text-gray-500 text-sm mb-1 mr-1 text-right font-medium tracking-wide">차주한</p>
+                <div class="bg-[#2a2a30] text-gray-100 px-5 py-4 rounded-2xl rounded-tr-sm shadow-md border border-gray-700">
+                    <p class="text-[17px] leading-relaxed break-keep text-right">"그렇습니다."</p>
+                </div>
+            </div>
+
+            <!-- 경찰선데요 (상대방) -->
+            <div class="self-start max-w-[85%] fade-in delay-3">
+                <div class="bg-[#1f1f23] text-gray-200 px-5 py-4 rounded-2xl rounded-tl-sm shadow-md border border-gray-800">
+                    <p class="text-[17px] leading-relaxed break-keep">"—여기 강남 경찰선데요."</p>
+                </div>
+            </div>
+
+            <!-- 차주한 (나) -->
+            <div class="self-end max-w-[85%] fade-in delay-4">
+                <div class="bg-[#2a2a30] text-gray-100 px-5 py-4 rounded-2xl rounded-tr-sm shadow-md border border-gray-700">
+                    <p class="text-[17px] leading-relaxed break-keep text-right">"……그런데요?"</p>
+                </div>
+            </div>
+
+            <!-- 여백 확보용 -->
+            <div class="h-10"></div>
+        </div>
+
+        <!-- 하단 통화 종료 버튼 영역 -->
+        <div class="pb-10 pt-4 flex justify-center items-center z-10 bg-gradient-to-t from-[#0f0f11] via-[#0f0f11] to-transparent relative">
+            <button class="w-16 h-16 bg-red-600 hover:bg-red-500 text-white rounded-full flex items-center justify-center shadow-[0_0_25px_rgba(220,38,38,0.4)] transition-all transform hover:scale-105 active:scale-95 group">
+                <!-- X (종료) 아이콘 -->
+                <svg class="w-8 h-8 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- 은은한 배경 효과 -->
+        <div class="absolute inset-0 bg-gradient-to-b from-gray-900/20 to-black/50 pointer-events-none"></div>
+    </div>
+
+</body>
+</html>
